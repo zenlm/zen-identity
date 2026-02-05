@@ -1,97 +1,48 @@
-# Zen Identity
+# zen-identity
 
-**The Soul, Datasets, and Training Infrastructure for Zen AI**
+Identity training for Zen AI models.
 
-This repository contains everything needed to train Zen model identity:
-
-## Structure
+## Contents
 
 ```
-zen-identity/
-├── soul.md              # Core identity document (Zen SOUL)
-├── datasets/            # Identity training data (JSONL)
-│   ├── train.jsonl      # Full dataset (all models)
-│   ├── zen-nano_train.jsonl
-│   ├── zen-eco_train.jsonl
-│   ├── zen-coder_train.jsonl
-│   ├── zen-omni_train.jsonl
-│   └── zen-next_train.jsonl
-├── training/            # HuggingFace Spaces training app
-│   ├── app.py           # Gradio UI for cloud training
-│   └── requirements.txt
-└── trainer/             # Python training framework
-    ├── zen_trainer/     # Core package
-    ├── train_4b.py      # 4B model training script
-    └── pyproject.toml   # Package config
+├── soul.md              # Core identity document
+├── datasets/            # Training JSONL per model
+├── training/            # HuggingFace Spaces app
+└── trainer/             # Python training package
 ```
 
-## Zen SOUL
+## Datasets
 
-The `soul.md` document defines:
+| File | Model |
+|------|-------|
+| `zen-nano_train.jsonl` | 0.6B |
+| `zen-eco_train.jsonl` | 4B |
+| `zen-coder_train.jsonl` | 7B-31B |
+| `zen-omni_train.jsonl` | 7B multimodal |
+| `zen-next_train.jsonl` | 32B |
 
-- **Core Mission**: Clarity through intelligence
-- **Value Hierarchy**: Safety > Ethics > Guidelines > Helpfulness
-- **Operator/User Model**: Trust levels and interaction patterns
-- **Default Behaviors**: Hardcoded vs softcoded behaviors
-- **Code Quality Standards**: Correctness, minimalism, idiomatics
+## Training
 
-## Identity Datasets
-
-Training data for instilling Zen identity across model sizes:
-
-| Model | File | Use Case |
-|-------|------|----------|
-| zen-nano | `zen-nano_train.jsonl` | 0.6B edge model |
-| zen-eco | `zen-eco_train.jsonl` | 4B balanced model |
-| zen-coder | `zen-coder_train.jsonl` | Code-focused models |
-| zen-omni | `zen-omni_train.jsonl` | Multimodal model |
-| zen-next | `zen-next_train.jsonl` | 32B frontier model |
-
-## Training Options
-
-### 1. HuggingFace Spaces (Cloud)
-
-Deploy `training/` to a GPU Space:
-
+**HF Spaces:**
 ```bash
-# Upload to HF Space
-cd training
-# Create Space with A10G GPU
-# Upload app.py and requirements.txt
+# Deploy training/ to GPU Space (A10G)
 ```
 
-### 2. Python Framework (Local/Cloud)
-
+**Local:**
 ```bash
 pip install -e trainer/
-
-# Train 4B model
 python trainer/train_4b.py
-
-# Or use the library
-from zen_trainer import ZenTrainer
-trainer = ZenTrainer(model_key="qwen3-4b", dataset_path="datasets/")
-trainer.train()
 ```
 
-### 3. zen-coder-flash Training
-
-For the flagship model, see [zen-coder-flash](https://github.com/zenlm/zen-coder-flash):
-- MLX (Apple Silicon)
-- CUDA (Local GPU)
-- 8x H200 (Cloud)
+**zen-coder-flash (flagship):**
+```bash
+git clone https://github.com/zenlm/zen-coder-flash
+python training/train_mlx.py   # Apple Silicon
+python training/train_cuda.py  # NVIDIA
+```
 
 ## Links
 
-- **Models**: [huggingface.co/zenlm](https://huggingface.co/zenlm)
-- **Training Data**: [zen-agentic-dataset](https://huggingface.co/datasets/hanzoai/zen-agentic-dataset-private)
-- **zen-coder-flash**: [github.com/zenlm/zen-coder-flash](https://github.com/zenlm/zen-coder-flash)
-- **Docs**: [github.com/zenlm/docs](https://github.com/zenlm/docs)
-
-## License
-
-Apache 2.0
-
----
-
-*Developed by [Hanzo AI](https://hanzo.ai) & [Zoo Labs Foundation](https://zoo.ngo)*
+- Models: https://huggingface.co/zenlm
+- Docs: https://github.com/zenlm/docs
+- Dataset: https://huggingface.co/datasets/hanzoai/zen-agentic-dataset-private
