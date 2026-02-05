@@ -2,47 +2,55 @@
 
 Identity training for Zen AI models.
 
-## Contents
+## Zen Coder Family
 
-```
-├── soul.md              # Core identity document
-├── datasets/            # Training JSONL per model
-├── training/            # HuggingFace Spaces app
-└── trainer/             # Python training package
-```
-
-## Datasets
-
-| File | Model |
-|------|-------|
-| `zen-nano_train.jsonl` | 0.6B |
-| `zen-eco_train.jsonl` | 4B |
-| `zen-coder_train.jsonl` | 7B-31B |
-| `zen-omni_train.jsonl` | 7B multimodal |
-| `zen-next_train.jsonl` | 32B |
+| Model | Base | Size | Script |
+|-------|------|------|--------|
+| zen-coder-4b | Qwen3-Coder-4B | 4B | `train_4b.py` |
+| zen-coder | Devstral-Small-2-24B | 24B | - |
+| **zen-coder-flash** ⭐ | **GLM-4.7-Flash** | **31B MoE (3B active)** | `train_zen_coder_flash.py` |
+| zen-coder-max | Kimi-K2 | 671B MoE (14B active) | `train_zen_coder_max.py` |
 
 ## Training
 
-**HF Spaces:**
-```bash
-# Deploy training/ to GPU Space (A10G)
-```
+### zen-coder-flash (Flagship)
 
-**Local:**
 ```bash
-pip install -e trainer/
-python trainer/train_4b.py
-```
+# CUDA
+pip install torch transformers peft bitsandbytes datasets
+python trainer/train_zen_coder_flash.py
 
-**zen-coder-flash (flagship):**
-```bash
+# MLX (Apple Silicon)
 git clone https://github.com/zenlm/zen-coder-flash
-python training/train_mlx.py   # Apple Silicon
-python training/train_cuda.py  # NVIDIA
+python training/train_mlx.py
+```
+
+### zen-coder-max (Frontier)
+
+Requires 4x A100 80GB or 8x H200:
+
+```bash
+python trainer/train_zen_coder_max.py
+
+# Multi-GPU
+torchrun --nproc_per_node 4 trainer/train_zen_coder_max.py
+```
+
+## Contents
+
+```
+├── soul.md                      # Core identity document
+├── datasets/                    # Training JSONL
+├── trainer/
+│   ├── train_zen_coder_flash.py # GLM-4.7-Flash training
+│   ├── train_zen_coder_max.py   # Kimi-K2 training
+│   └── train_4b.py              # Qwen3-4B training
+└── training/
+    └── app.py                   # HF Spaces Gradio app
 ```
 
 ## Links
 
 - Models: https://huggingface.co/zenlm
-- Docs: https://github.com/zenlm/docs
-- Dataset: https://huggingface.co/datasets/hanzoai/zen-agentic-dataset-private
+- Dataset: https://huggingface.co/datasets/zenlm/zen-identity
+- zen-coder-flash repo: https://github.com/zenlm/zen-coder-flash
