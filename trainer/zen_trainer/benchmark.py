@@ -35,7 +35,7 @@ from dataclasses import dataclass, field
 from typing import Optional, Dict, List, Any
 from datetime import datetime
 
-from .models import get_model_config, ZEN_MODELS
+from .models import get_model_config, ZEN_CODER_MODELS
 
 
 @dataclass
@@ -504,7 +504,7 @@ def benchmark_all_models(
     """
     results = {}
 
-    for model_key in ZEN_MODELS:
+    for model_key in ZEN_CODER_MODELS:
         model_path = Path(models_dir) / f"zen-coder-{model_key}"
         if model_path.exists():
             print(f"\n{'#'*60}")

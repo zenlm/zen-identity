@@ -16,7 +16,7 @@ from dataclasses import dataclass
 from typing import Optional, Literal
 from abc import ABC, abstractmethod
 
-from .models import get_model_config, ModelConfig, ZEN_MODELS
+from .models import get_model_config, ModelConfig, ZEN_CODER_MODELS
 
 
 Backend = Literal["mlx", "unsloth", "deepspeed", "autotrain"]
