@@ -6,10 +6,10 @@ Identity training for Zen AI models.
 
 | Model | Base | Size | Script |
 |-------|------|------|--------|
-| zen-coder-4b | Qwen3-Coder-4B | 4B | `train_4b.py` |
+| zen-coder-4b | Zen Coder 4B | 4B | `train_4b.py` |
 | zen-coder | Devstral-Small-2-24B | 24B | - |
-| **zen-coder-flash** ⭐ | **GLM-4.7-Flash** | **31B MoE (3B active)** | `train_zen_coder_flash.py` |
-| zen-coder-max | Kimi-K2 | 671B MoE (14B active) | `train_zen_coder_max.py` |
+| **zen-coder-flash** ⭐ | **Zen Coder Flash** | **31B MoE (3B active)** | `train_zen_coder_flash.py` |
+| zen-coder-max | Zen Coder MAX | 671B MoE (14B active) | `train_zen_coder_max.py` |
 
 ## Training
 
@@ -42,9 +42,9 @@ torchrun --nproc_per_node 4 trainer/train_zen_coder_max.py
 ├── soul.md                      # Core identity document
 ├── datasets/                    # Training JSONL
 ├── trainer/
-│   ├── train_zen_coder_flash.py # GLM-4.7-Flash training
-│   ├── train_zen_coder_max.py   # Kimi-K2 training
-│   └── train_4b.py              # Qwen3-4B training
+│   ├── train_zen_coder_flash.py # Zen Coder Flash training
+│   ├── train_zen_coder_max.py   # Zen Coder MAX training
+│   └── train_4b.py              # Zen Coder 4B training
 └── training/
     └── app.py                   # HF Spaces Gradio app
 ```
