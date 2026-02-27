@@ -7,7 +7,7 @@ Identity training for Zen AI models.
 | Model | Base | Size | Script |
 |-------|------|------|--------|
 | zen-coder-4b | Zen Coder 4B | 4B | `train_4b.py` |
-| zen-coder | Devstral-Small-2-24B | 24B | - |
+| zen-coder | Zen Coder 24B base | 24B | - |
 | **zen-coder-flash** ⭐ | **Zen Coder Flash** | **31B MoE (3B active)** | `train_zen_coder_flash.py` |
 | zen-coder-max | Zen Coder MAX | 671B MoE (14B active) | `train_zen_coder_max.py` |
 
